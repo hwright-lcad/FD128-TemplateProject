@@ -2146,7 +2146,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blackScreenImage: {fileID: 1163260850}
-  winCount: 10
+  collectibleCount: 0
+  countText: {fileID: 103032571}
+  winScreen: {fileID: 1776989874}
   collectibles:
   - {fileID: 8498074337766474007}
   - {fileID: 1788505019}
@@ -2158,8 +2160,6 @@ MonoBehaviour:
   - {fileID: 333852540}
   - {fileID: 1057739279}
   - {fileID: 916816559}
-  countText: {fileID: 103032571}
-  winScreen: {fileID: 1776989874}
 --- !u!4 &1562734780
 Transform:
   m_ObjectHideFlags: 0
@@ -4313,9 +4313,9 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1562734780}
-  - {fileID: 705507995}
-  - {fileID: 1899900542}
   - {fileID: 432471030}
+  - {fileID: 1899900542}
+  - {fileID: 705507995}
   - {fileID: 4459864851103456243}
   - {fileID: 1948121888}
   - {fileID: 1736848521}

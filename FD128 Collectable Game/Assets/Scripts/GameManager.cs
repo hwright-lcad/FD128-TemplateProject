@@ -11,8 +11,8 @@ public class GameManager : MonoBehaviour
 {
     public Image blackScreenImage; 
     
-    public int collectibleCount;
-    private int winCount;
+    private int collectibleCount;
+    public int winCount;
     
     public TMP_Text countText;
 
@@ -77,7 +77,13 @@ public class GameManager : MonoBehaviour
     }
 
 
-    /// FOR HIKARI: I'm thinking that we could teach the stuff before this point in the script and provide the functions past this line
+
+
+    //
+    // Provided Functions
+    //
+
+    // These three functions can be added to buttons to run them
 
     public void ExitGame()
     {
@@ -95,6 +101,9 @@ public class GameManager : MonoBehaviour
         Debug.Log("Close Application");
         Application.Quit();
     }
+
+
+
 
     // This is a Coroutine! It allows us to execute code over a period of time rather than all at once
     // This one fades the alpha of the blackScreenImage rather than having it pop in
