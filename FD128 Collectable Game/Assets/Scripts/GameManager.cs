@@ -9,15 +9,16 @@ using TMPro;
 // This includes things like score and win/lose conditions
 public class GameManager : MonoBehaviour
 {
+    // UI Elements
     public Image blackScreenImage; 
+    public GameObject winScreen;
+    public TMP_Text countText;
     
+    // Counts
     private int collectibleCount;
     public int winCount;
-    
-    public TMP_Text countText;
 
-    public GameObject winScreen;
-
+    // Game Elements
     public List<Collectible> collectibles;
 
     // Start is called before the first frame update
