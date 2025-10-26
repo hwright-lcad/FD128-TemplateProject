@@ -77,14 +77,11 @@ public class GameManager : MonoBehaviour
         Cursor.visible = true;
     }
 
-
-
-
     //
     // Provided Functions
     //
 
-    // These three functions can be added to buttons to run them
+    // These three functions can be added to buttons in editor to run them
 
     public void ExitGame()
     {
@@ -102,9 +99,6 @@ public class GameManager : MonoBehaviour
         Debug.Log("Close Application");
         Application.Quit();
     }
-
-
-
 
     // This is a Coroutine! It allows us to execute code over a period of time rather than all at once
     // This one fades the alpha of the blackScreenImage rather than having it pop in
