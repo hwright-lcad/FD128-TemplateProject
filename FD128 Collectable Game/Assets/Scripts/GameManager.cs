@@ -3,51 +3,118 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
+// Your Game Manager should keep track of the state of the elements in your game
+// This includes things like score and win/lose conditions
 public class GameManager : MonoBehaviour
 {
-    public Image blackScreen;
+    public Image blackScreenImage; 
+    
+    public int collectibleCount;
+    private int winCount;
+    
+    public TMP_Text countText;
+
+    public GameObject winScreen;
+
+    public List<Collectible> collectibles;
+
     // Start is called before the first frame update
     void Start()
     {
-        blackScreen.color = Color.clear;
+        blackScreenImage.color = Color.clear;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        TrackCollectibles();
     }
+
+    // Check our list of Collectibles to see if any of them have been collected by the player
+    private void TrackCollectibles()
+    {
+        foreach (Collectible collectible in collectibles)
+        {
+            if (collectible.isCollected)
+            {
+                AddToCollectibleCount();
+            }
+
+            // If the collectible is destroyed, remove it from the list and start the loop over
+            // Without this check, we will keep adding the same collectible to the count every time TrackCollectibles() is called
+            if (collectible == null)
+            {
+                collectibles.Remove(collectible);
+                break;
+            }
+        }
+    }
+
+    private void AddToCollectibleCount()
+    {
+        Debug.Log("Add to the Collectible Count!");
+
+        // ++ adds one to the current value of an int variable
+        collectibleCount++;
+        countText.text = "Collected: " + collectibleCount.ToString();
+        Debug.Log($"New Collectible Count is {collectibleCount}");
+
+        // We've collected a new collectible! Do we have enough collectibles to win the game?
+        if (collectibleCount == winCount)
+        {
+            GameOver();
+        }
+    }
+
+    private void GameOver()
+    {
+        Debug.Log("Game over!");
+        winScreen.SetActive(true);
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+    }
+
+
+    /// FOR HIKARI: I'm thinking that we could teach the stuff before this point in the script and provide the functions past this line
 
     public void ExitGame()
     {
+        Debug.Log("Exit Game to Main Menu");
         StartCoroutine(SceneLoadTimer(0));
     }
     public void StartGame()
     {
-        StartCoroutine(SceneLoadTimer(0));
+        Debug.Log("Start Game");
+        StartCoroutine(SceneLoadTimer(1));
     }
 
     public void CloseApplication()
     {
+        Debug.Log("Close Application");
         Application.Quit();
     }
 
+    // This is a Coroutine! It allows us to execute code over a period of time rather than all at once
+    // This one fades the alpha of the blackScreenImage rather than having it pop in
     IEnumerator SceneLoadTimer(int scene)
     {
         float timer = 0f;
         float duration = 1f;
+
         while(timer < duration)
         {
             timer += Time.unscaledDeltaTime;
             float lerp = timer / duration;
 
-            blackScreen.color = Color.Lerp(Color.clear, Color.black, lerp);
+            blackScreenImage.color = Color.Lerp(Color.clear, Color.black, lerp);
 
             yield return null;
         }
 
         yield return new WaitForSecondsRealtime(0.8f);
+
         SceneManager.LoadScene(scene);
     }
 }
