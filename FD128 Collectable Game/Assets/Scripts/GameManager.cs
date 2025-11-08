@@ -25,7 +25,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         blackScreenImage.color = Color.clear;
-        countText.text = "Collected: 0";
     }
 
     // Update is called once per frame
