@@ -23,6 +23,12 @@ public class ChecklistLogic : MonoBehaviour
     public Color crossedOffColor03 = Color.gray;
     public Color baseColor03;
 
+    [Header("Item #4 Properties")]
+    public Toggle item04Toggle;
+    public Text item04Text;
+    public Color crossedOffColor04 = Color.gray;
+    public Color baseColor04;
+
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +44,10 @@ public class ChecklistLogic : MonoBehaviour
         // Listed Item #3
         if (item03Text != null) baseColor03 = item03Text.color;
         if (item03Toggle != null) item03Toggle.onValueChanged.AddListener(OnToggleChangedItem03);
+
+        // Listed Item #4
+        if (item04Text != null) baseColor04 = item04Text.color;
+        if (item04Toggle != null) item04Toggle.onValueChanged.AddListener(OnToggleChangedItem03);
     }
 
 
@@ -54,6 +64,10 @@ public class ChecklistLogic : MonoBehaviour
         // Collected Item #3
         if (item03Toggle != null)
             item03Toggle.isOn = true;
+
+        // Collected Item #4
+        if (item04Toggle != null)
+            item04Toggle.isOn = true;
     }
 
 
@@ -93,6 +107,19 @@ public class ChecklistLogic : MonoBehaviour
             //Crosses out text on Checklist UI
             item03Text.text = $"<s>(item03Text.text)</s>";
             item03Text.color = crossedOffColor03;
+        }
+    }
+
+    public void OnToggleChangedItem04(bool isOnItem04)
+    {
+        // Toggle Item #4 on Checklist
+        if (item04Text == null) return;
+
+        if (isOnItem04)
+        {
+            //Crosses out text on Checklist UI
+            item04Text.text = $"<s>(item04Text.text)</s>";
+            item04Text.color = crossedOffColor04;
         }
     }
 }

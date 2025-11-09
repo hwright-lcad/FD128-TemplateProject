@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 7699702325102292899}
   - component: {fileID: 5613975039735257624}
   - component: {fileID: 5296580456190968056}
-  m_Layer: 0
+  - component: {fileID: 5994773886775150466}
+  m_Layer: 3
   m_Name: PowerCell
-  m_TagString: Untagged
+  m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,3 +108,19 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5994773886775150466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2919154219191422967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0fb49fd56fa2654184696fd48678459, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  partID: PowerCell_Item
+  pickupRange: 2
+  player: {fileID: 0}
+  collected: 0
