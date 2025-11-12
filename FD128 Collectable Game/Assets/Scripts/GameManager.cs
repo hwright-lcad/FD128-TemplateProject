@@ -59,8 +59,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Add to the Collectible Count!");
 
-        // ++ adds one to the current value of an int variable
-        collectibleCount++;
+        collectibleCount++; // ++ adds one to the current value of an int variable
         countText.text = "Collected: " + collectibleCount.ToString();
         Debug.Log($"New Collectible Count is {collectibleCount}");
 

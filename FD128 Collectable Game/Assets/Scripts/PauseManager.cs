@@ -24,6 +24,7 @@ public class PauseManager: MonoBehaviour
 
     public void PauseGame()
     {
+        Debug.Log("Pause Game");
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
         Time.timeScale = 0;
@@ -32,6 +33,7 @@ public class PauseManager: MonoBehaviour
 
     public void ResumeGame()
     {
+        Debug.Log("Resume Game");
         pauseMenu.SetActive(false);
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
