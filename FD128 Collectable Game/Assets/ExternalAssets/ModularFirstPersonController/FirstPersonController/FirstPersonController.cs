@@ -31,13 +31,13 @@ public class FirstPersonController : MonoBehaviour
     // Crosshair
     public bool lockCursor = true;
     public bool crosshair = true;
-    public Sprite crosshairImage;
+    public Image crosshairImage;
+    public Sprite crosshairSprite;
     public Color crosshairColor = Color.white;
 
     // Internal Variables
     private float yaw = 0.0f;
     private float pitch = 0.0f;
-    private Image crosshairObject;
 
     #region Camera Zoom Variables
 
@@ -76,13 +76,13 @@ public class FirstPersonController : MonoBehaviour
     // Sprint Bar
     public bool useSprintBar = true;
     public bool hideBarWhenFull = true;
+    public CanvasGroup sprintBarCG;
     public Image sprintBarBG;
     public Image sprintBar;
     public float sprintBarWidthPercent = .3f;
     public float sprintBarHeightPercent = .015f;
 
     // Internal Variables
-    private CanvasGroup sprintBarCG;
     private bool isSprinting = false;
     private float sprintRemaining;
     private float sprintBarWidth;
@@ -135,7 +135,7 @@ public class FirstPersonController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
 
-        crosshairObject = GetComponentInChildren<Image>();
+        //crosshairObject = GetComponentInChildren<Image>();
 
         // Set internal variables
         playerCamera.fieldOfView = fov;
@@ -158,17 +158,17 @@ public class FirstPersonController : MonoBehaviour
 
         if(crosshair)
         {
-            crosshairObject.sprite = crosshairImage;
-            crosshairObject.color = crosshairColor;
+            crosshairImage.sprite = crosshairSprite;
+            crosshairImage.color = crosshairColor;
         }
         else
         {
-            crosshairObject.gameObject.SetActive(false);
+            crosshairImage.gameObject.SetActive(false);
         }
 
         #region Sprint Bar
 
-        sprintBarCG = GetComponentInChildren<CanvasGroup>();
+        //sprintBarCG = GetComponentInChildren<CanvasGroup>();
 
         if(useSprintBar)
         {
@@ -579,8 +579,13 @@ public class FirstPersonController : MonoBehaviour
         { 
             EditorGUI.indentLevel++; 
             EditorGUILayout.BeginHorizontal(); 
-            EditorGUILayout.PrefixLabel(new GUIContent("Crosshair Image", "Sprite to use as the crosshair.")); 
-            fpc.crosshairImage = (Sprite)EditorGUILayout.ObjectField(fpc.crosshairImage, typeof(Sprite), false);
+            EditorGUILayout.PrefixLabel(new GUIContent("Crosshair Image", "Image component for the crosshair.")); 
+            fpc.crosshairImage = (Image)EditorGUILayout.ObjectField(fpc.crosshairImage, typeof(Image), true);
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal(); 
+            EditorGUILayout.PrefixLabel(new GUIContent("Crosshair Sprite", "Sprite to use as the crosshair.")); 
+            fpc.crosshairSprite = (Sprite)EditorGUILayout.ObjectField(fpc.crosshairSprite, typeof(Sprite), false);
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginHorizontal();
@@ -650,6 +655,11 @@ public class FirstPersonController : MonoBehaviour
 
             EditorGUILayout.BeginHorizontal();
             fpc.hideBarWhenFull = EditorGUILayout.ToggleLeft(new GUIContent("Hide Full Bar", "Hides the sprint bar when sprint duration is full, and fades the bar in when sprinting. Disabling this will leave the bar on screen at all times when the sprint bar is enabled."), fpc.hideBarWhenFull);
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel(new GUIContent("Bar Canvas Group", "Canvas group to fade sprint bar in/out."));
+            fpc.sprintBarCG = (CanvasGroup)EditorGUILayout.ObjectField(fpc.sprintBarCG, typeof(CanvasGroup), true);
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginHorizontal();
