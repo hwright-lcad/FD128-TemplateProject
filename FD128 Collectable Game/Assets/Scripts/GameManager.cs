@@ -10,16 +10,17 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     // UI Elements
+<<<<<<< Updated upstream
     public Image blackScreenImage;
     public GameObject winScreen;
     public TMP_Text countText;
+=======
+    public Image blackScreenImage; 
+>>>>>>> Stashed changes
     
     // Counts
     private int collectibleCount;
-    public int winCount;
 
-    // Game Elements
-    public List<Collectible> collectibles;
 
     // Start is called before the first frame update
     void Start()
@@ -32,9 +33,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        TrackCollectibles();
+        
     }
 
+<<<<<<< Updated upstream
     // Check our list of Collectibles to see if any of them have been collected by the player
     private void TrackCollectibles()
     {
@@ -78,6 +80,8 @@ public class GameManager : MonoBehaviour
         Cursor.visible = true;
     }
 
+=======
+>>>>>>> Stashed changes
     // These three functions can be added to buttons in editor to run them
 
     public void ExitGame()
@@ -101,8 +105,13 @@ public class GameManager : MonoBehaviour
     // This one fades the alpha of the blackScreenImage rather than having it pop in
     IEnumerator SceneLoadTimer(int scene)
     {
+<<<<<<< Updated upstream
         float timer = 0f; // Create a float to increment up over time
         float duration = 1f; // How long should the fade last?
+=======
+        float timer = 0f;
+        float duration = 0.5f;
+>>>>>>> Stashed changes
 
         while(timer < duration)
         {
