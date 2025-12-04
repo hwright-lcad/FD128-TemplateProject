@@ -50,7 +50,5 @@ public class PlayerHealth : MonoBehaviour
     {
         Time.timeScale = 0;
         gameOverScreen.SetActive(true);
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = true;
     }
 }
